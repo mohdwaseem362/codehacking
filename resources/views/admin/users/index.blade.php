@@ -53,6 +53,7 @@
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Photo</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Status</th>
@@ -66,7 +67,10 @@
                       @foreach($users as $key =>$data)
                       <tr>
                         <th scope="row">{{$key+1}}</th>
-                        <td>{{$data->name}}</td>
+                        <td><a href="{{route('users.edit',$data->id)}}">{{$data->name}}</a> </td>
+                        <td><div class="image-container">
+                        <img height="75" width="75" src="/images/codehacking/admin/{{$data->photo_id}}" alt="">
+                        </div></td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->role->name}}</td>
                         <td>

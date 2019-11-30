@@ -79,6 +79,13 @@
                     </div>
 
                     <div class="form-group">
+                    <label for="file">Select Image</label>
+                    <input type="file" name="file" class="form-control" value="" placeholder="">
+                    </div>
+
+
+
+                    <div class="form-group">
                     <label for="email">Password</label>
                     <input type="text" name="password" class="form-control" value="" placeholder="Enter Password">
                     </div>
