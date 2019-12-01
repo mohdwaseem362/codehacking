@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use App\User;
 use App\Role;
 use App\Photo;
@@ -112,7 +113,35 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+
+        $validatedata=$this->validate($request, [
+        'name' => 'required|max:25',
+        'email' => 'required|email',
+        'role' =>    'required',
+        'status' => 'required',
+        'file'  => 'mimes:jpeg,bmp,png|max:1000',
+        'password'=>'required|max:20|min:5',
+        'cpassword'=>'required|same:password|max:20|min:5'
+         ]);
+
+        if($file=$request->file('file')){
+
+            $filename = time().$file->getClientOriginalName();
+            $file->move('images/codehacking/admin',$filename);
+            $photo =Photo::create(['path'=>$filename]);
+        }
+        if($validatedata){
+        $user->name =$request->name;
+        $user->email =$request->email;
+        $user->role_id= $request->role;
+        $user->is_active= $request->status;
+        $user->photo_id =$photo->id;
+        $user->password=bcrypt($request->cpassword);
+        $user->update();
+        return redirect('/admin/users')->with('success','User Updated successfully!');
+        }
+   
     }
 
     /**

@@ -52,7 +52,8 @@
 
           <div class="col-sm-9">
 
-          <form action="{{url('admin/users')}}" method="post"  enctype="multipart/form-data" accept-charset="utf-8">
+          <form action="{{route('users.update',$user->id)}}" method="post"  enctype="multipart/form-data" accept-charset="utf-8">
+            @method('PUT')
               @csrf
                     
                     <div class="form-group">
@@ -79,7 +80,7 @@
                      <label for="SelectStatus">Select Status</label>
                      <select name="status"  class="form-control">
                      
-                     <option value="$user->id_active" selected="selected" >
+                     <option value="{{$user->is_active}}" selected="selected" >
                        @if($user->is_active==1)
                           Active
                           @elseif($user->is_active==0)
