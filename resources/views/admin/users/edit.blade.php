@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Create User</h1>
+            <h1 class="m-0 text-dark">Edit User</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -44,8 +44,13 @@
             </ul>
           </div>
           @endif
+          <div class="col-sm-3">
 
-  			<div class="form-group mx-lg-auto pb-5">
+            <img height="200px" width="200px" src="{{$user->photo ? $user->photo->path :'Add photo'}}" alt="" class="img-responsive img-circle">
+            
+          </div>
+
+          <div class="col-sm-9">
 
           <form action="{{url('admin/users')}}" method="post"  enctype="multipart/form-data" accept-charset="utf-8">
               @csrf
@@ -107,10 +112,9 @@
 
                     <input type="submit" name="Submit" value="Create User">
   
-           </form>
-
-              
-        </div>
+           </form>     
+     </div>
+      </div>
       </div>
   </div>
 

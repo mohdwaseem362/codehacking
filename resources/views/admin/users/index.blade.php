@@ -69,7 +69,7 @@
                         <th scope="row">{{$key+1}}</th>
                         <td><a href="{{route('users.edit',$data->id)}}">{{$data->name}}</a> </td>
                         <td><div class="image-container">
-                        <img height="75" width="75" src="/images/codehacking/admin/{{$data->photo_id}}" alt="">
+                        <img height="50" width="50" src="{{$data->photo ? $data->photo->path :'Add photo'}}" alt="" class="img-responsive img-circle">
                         </div></td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->role->name}}</td>
